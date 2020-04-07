@@ -1,0 +1,2 @@
+export const PERSONAL_PROFILE = 'PERSONAL_PROFILE'
+export const USER_PROFILE = 'USER_PROFILE'

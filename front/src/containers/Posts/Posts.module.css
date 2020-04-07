@@ -1,0 +1,13 @@
+.Posts {
+  display: flex;
+  flex-wrap: wrap;
+  width:70%;
+  margin:auto;
+  margin-bottom: 4rem;
+}
+@media (max-width: 499px) {
+  .Posts {
+    display: block;
+    
+  }
+}

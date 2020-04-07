@@ -1,0 +1,12 @@
+.Username {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.Username  button {
+    padding-top:0;
+    padding-bottom:0;
+    margin-left: 2rem;
+}

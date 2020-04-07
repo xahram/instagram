@@ -1,0 +1,44 @@
+.ListStyle {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 40%;
+  /* max-height:100%; */
+}
+.Bar {
+  height: 64px;
+}
+.Bar ul {
+  height: 100%;
+}
+
+.ListStyle li > a {
+  text-decoration: none;
+}
+/* .ListStyle li > a:hover .Hoverbar {
+  display: block;
+} */
+.DivFlex {
+  flex-grow: 1;
+}
+.ListStyle > nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.ListStyle > nav > li,
+.ListStyle > nav {
+  height: 100%;
+}
+
+.Search {
+  position: relative;
+}
+.SearchIcon {
+  position: absolute;
+}
+/* .inputInput{
+  margin-left: 100%;
+} */
