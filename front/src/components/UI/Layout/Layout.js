@@ -4,15 +4,14 @@ import Login from '../../../components/SignUp/Login';
 import { AuthContext } from '../../../hooks/contexts/AuthContext'
 import { Route, Switch, Link, Redirect } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
+import Navbar from '../../Navbar/Navbar';
 const Layout = (props) => {
     const { state } = useContext(AuthContext)
     const { isAuthenticated } = state
     let app = isAuthenticated ? <React.Fragment>
         <header>
-            <Link to={{
-                pathname: '/third-user',
-                search: '?username=jaidi'
-            }} >Search User</Link>
+            {/* <Link to={{ pathname: '/third-user', search: '?username=jaidi' }} >Search User</Link> */}
+            <Navbar />
         </header>
         <main>
             {props.children}

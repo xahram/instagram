@@ -3,7 +3,7 @@ import React from 'react'
 export const AuthContext = React.createContext();
 export const AuthProvider = (props) => {
     const [state, setState] = React.useState({
-        isAuthenticated: false,
+        isAuthenticated: true,
         username: '',
         email: '',
         userId: '',
