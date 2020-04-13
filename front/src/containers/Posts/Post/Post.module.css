@@ -23,14 +23,18 @@
 }
 
 @media (max-width: 499px) {
-   .Post > img {
+  .Post > img {
     object-fit: cover;
-   }
-   .Post {
+  }
+  .Post {
     width: 70%;
     margin: auto;
     margin-top: 3px;
     margin-bottom: 3px;
-   }
+  }
+  .Post:hover {
+    background-color: #cccccc;
+    opacity: 60%;
+    cursor: pointer;
+  }
 }
-

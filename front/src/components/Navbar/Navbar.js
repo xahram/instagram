@@ -11,13 +11,15 @@ const navbar = (props) => {
     const { classes } = props
     return (
         <div>
-            <AppBar position="static">
-                <Toolbar>
-                    <CardMedia image={InstagramImageLogo} />
+            <AppBar className={classes.appBar} color='default'position="static">
+                <Toolbar className={classes.toolbar}>
+                    <CardMedia  className={classes.cardMedia}>
+                        <img className={classes.cardMediaImage} src={InstagramImageLogo} alt='instagram' />
+                    </CardMedia>
                     <div className={classes.search}>
-                        <div className={classes.searchIcon}>
+                        {/* <div className={classes.searchIcon}>
                             <Search />
-                        </div>
+                        </div> */}
                         <InputBase placeholder='Search...' classes={{
                             root: classes.inputRoot,
                             input: classes.inputInput
