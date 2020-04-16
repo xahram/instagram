@@ -114,6 +114,19 @@ UserRouter.get('/posts/:id', async (req, res) => {
     }
 
 })
+UserRouter.get('/searchUser/:username', async (req, res) => {
+    const users = await User.find({ username: { $regex: new RegExp(req.params.username) } }, { email: 0, password: 0, _id: 0, bio: 0 })
+
+    try {
+        if (!users.length) {
+            return res.status(404).send("Please use correct username")
+        }
+
+        res.status(200).send(users)
+    } catch (error) {
+        return res.status(404).send("No User Found")
+    }
+})
 UserRouter.get('/otherUserProfile/:username', async (req, res) => {
 
     const user = await User.findOne({ username: req.params.username })
