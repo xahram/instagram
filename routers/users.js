@@ -115,13 +115,19 @@ UserRouter.get('/posts/:id', async (req, res) => {
 
 })
 UserRouter.get('/searchUser/:username', async (req, res) => {
-    const users = await User.find({ username: { $regex: new RegExp(req.params.username) } }, { email: 0, password: 0, _id: 0, bio: 0 })
+    const users = await User.find({ username: { $regex: new RegExp(req.params.username) } }, { email: 0, password: 0, _id: 0, bio: 0 }).lean()
 
     try {
         if (!users.length) {
             return res.status(404).send("Please use correct username")
         }
-
+        // const updatedArray = users.map((user) => {
+        //     return { username: user.username, avatar: user.avatar ? user.avatar.toString('base64') : '' }
+        // })
+        //Both solutions work but this one is lot cleaner requires no new array 
+        for (const user of users) {
+            user.avatar ? user.avatar = user.avatar.toString('base64') : ''
+        }
         res.status(200).send(users)
     } catch (error) {
         return res.status(404).send("No User Found")
