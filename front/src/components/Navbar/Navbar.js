@@ -18,8 +18,11 @@ const Navbar = (props) => {
         if (value.length >= 3) {
             //here user = {username:response.data.username,avatar:response.data.avatar}
             //setUser(user)
-            axios.get('/searchUser/value')
-                .then((res) => { console.log(res) })
+            axios.get(`/searchUser/${value}`)
+                .then((res) => {
+                    setUser(res.data)
+                    console.log(res.data)
+                })
                 .catch((err) => { console.log(err) })
             console.log('request sent')
         }
