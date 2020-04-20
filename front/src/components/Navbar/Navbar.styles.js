@@ -3,7 +3,7 @@ const styles = (theme) => {
         appBar: {
             width: "100%",
             height: '64px',
-            
+
         },
         toolbar: {
             display: 'flex',
@@ -14,7 +14,7 @@ const styles = (theme) => {
             marginLeft: '0.5%',
             width: '20%',
             height: '100%',
-            boxSizing:'border-box'
+            boxSizing: 'border-box'
         },
         cardMediaImage: {
             width: '100%',
@@ -48,7 +48,8 @@ const styles = (theme) => {
             "&:focus": {
                 border: '2px solid cyan',
                 width: '100%',
-            }
+            },
+         
 
         },
         avatarButton: {

@@ -9,22 +9,32 @@ import InputBase from '@material-ui/core/InputBase'
 import { CardMedia } from '@material-ui/core';
 import SearchSuggestions from '../SearchSuggestions/SearchSuggestions'
 import useInputState from '../../hooks/useInputState'
+import useTogglerState from '../../hooks/useTogglerState'
 import axios from 'axios'
 const Navbar = (props) => {
     const { classes } = props;
     const [value, setValue] = useInputState()
+    const [loading, setLoading] = useTogglerState(false)
     const [users, setUser] = React.useState([])
     React.useEffect(() => {
         if (value.length >= 3) {
+            setLoading(true)
             //here user = {username:response.data.username,avatar:response.data.avatar}
             //setUser(user)
             axios.get(`/searchUser/${value}`)
                 .then((res) => {
+
                     setUser(res.data)
+                    setLoading(false)
                     console.log(res.data)
                 })
-                .catch((err) => { console.log(err) })
+                .catch((err) => {
+                    setLoading(false)
+                    console.log(err)
+                })
             console.log('request sent')
+        } else {
+            setUser([])
         }
     }, [value])
     return (
@@ -42,7 +52,7 @@ const Navbar = (props) => {
                             root: classes.inputRoot,
                             input: classes.inputInput
                         }} />
-                        <SearchSuggestions users={users} />
+                        <SearchSuggestions loading={loading} users={users} />
                     </div>
                     <IconButton edge="start" className={classes.avatarButton} color="inherit" aria-label="menu">
                         <Avatar />
