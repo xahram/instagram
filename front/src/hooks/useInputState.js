@@ -5,7 +5,10 @@ const InputState = (initialVal) => {
     const onChangeHandler = (e) => {
         setValue(e.target.value)
     }
-    return [val, onChangeHandler]
+    const reset = () => {
+        setValue(initialVal)
+    }
+    return [val, onChangeHandler, reset]
 }
 
 export default InputState 

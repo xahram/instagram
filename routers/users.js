@@ -164,7 +164,7 @@ UserRouter.get('/otherUserProfile/:username', async (req, res) => {
             posts: updatedPosts
         }
 
-        console.log(updatedUser)
+        // console.log(updatedUser)
         return res.status(200).send(updatedUser)
 
     } catch (e) {

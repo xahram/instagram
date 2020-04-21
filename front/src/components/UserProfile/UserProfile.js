@@ -13,6 +13,31 @@ export default class UserProfile extends React.Component {
         bio: '',
         posts: []
     }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.location.search !== this.props.location.search) {
+            let username = ''
+            const query = new URLSearchParams(this.props.location.search)
+            for (let params of query.entries()) {
+                // console.log(params)
+                username = params[1]
+            }
+            axios.get(`/otherUserProfile/${username}`)
+                .then((res) => {
+
+                    this.setState({
+                        userProfilePic: res.data.avatar,
+                        username: res.data.username,
+                        bio: res.data.bio,
+                        posts: res.data.posts,
+                        noOfPosts: res.data.noOfPosts,
+
+                    })
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
+    }
     componentDidMount() {
         //here send the request to fill the above 
         // states and pass them down to below components

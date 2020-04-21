@@ -13,7 +13,7 @@ import useTogglerState from '../../hooks/useTogglerState'
 import axios from 'axios'
 const Navbar = (props) => {
     const { classes } = props;
-    const [value, setValue] = useInputState()
+    const [value, setValue,reset] = useInputState()
     const [loading, setLoading] = useTogglerState(false)
     const [users, setUser] = React.useState([])
     React.useEffect(() => {
@@ -52,7 +52,7 @@ const Navbar = (props) => {
                             root: classes.inputRoot,
                             input: classes.inputInput
                         }} />
-                        <SearchSuggestions loading={loading} users={users} />
+                        <SearchSuggestions reset={reset} loading={loading} users={users} />
                     </div>
                     <IconButton edge="start" className={classes.avatarButton} color="inherit" aria-label="menu">
                         <Avatar />
