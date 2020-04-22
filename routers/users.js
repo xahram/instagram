@@ -20,13 +20,14 @@ UserRouter.post('/login', async (req, res) => {
     console.log(req.body.email)
     const user = await User.findOne({ email: req.body.email })
     // console.log(user);
-
+    
     try {
         if (!user) {
             return res.status(404).send('Error: Please provide valid properties.')
         }
         if (user.password === req.body.password) {
             // console.log("from aboce", user.avatar.toString('base64'))
+            const token = await user.generateAuthToken()
             const noOfPosts = (await user.populate('posts').execPopulate())
             console.log(noOfPosts.posts.length)
             const updatedUser = {
@@ -36,6 +37,7 @@ UserRouter.post('/login', async (req, res) => {
                 avatar: user.avatar.toString('base64'),
                 noOfPosts: noOfPosts.posts.length,
                 bio: user.bio,
+                token:token
             }
             // user.avatar.toString('base64')
             // console.log(user)
