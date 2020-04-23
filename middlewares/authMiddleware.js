@@ -7,10 +7,11 @@ const authMiddleware = async (req, res, next) => {
         const decoded = jwt.verify(token, 'instagramclone')
         const user = await User.findOne({ _id: decoded._id })
         if (!user) {
-            return res.status(404).send('Unable To find User')
+            return res.status(404).send('COuldn\'t perform operation. ')
         }
         req.token = token
     } catch (error) {
-        res.status(500).send('Unable To Login')
+        res.status(500).send('Unable To Verify')
     }
 }
+module.exports =  authMiddleware

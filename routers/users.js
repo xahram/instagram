@@ -7,10 +7,18 @@ const multer = require('multer');
 const upload = multer()
 UserRouter.post('/users', async (req, res) => {
     const user = new User({ username: req.body.username, email: req.body.email, password: req.body.password })
-    console.log(req.body, user)
+    // console.log(req.body, user)
     try {
         await user.save()
-        res.status(201).send(user)
+        const token = await user.generateAuthToken()
+        const updatedUser = {
+            bio: user.bio,
+            _id: user._id,
+            username: user.username,
+            email:  user.email ,
+            token: token
+        }
+        res.status(201).send(updatedUser)
     } catch (e) {
         throw new Error(e)
     }
@@ -20,7 +28,7 @@ UserRouter.post('/login', async (req, res) => {
     console.log(req.body.email)
     const user = await User.findOne({ email: req.body.email })
     // console.log(user);
-    
+
     try {
         if (!user) {
             return res.status(404).send('Error: Please provide valid properties.')
@@ -37,7 +45,7 @@ UserRouter.post('/login', async (req, res) => {
                 avatar: user.avatar.toString('base64'),
                 noOfPosts: noOfPosts.posts.length,
                 bio: user.bio,
-                token:token
+                token: token
             }
             // user.avatar.toString('base64')
             // console.log(user)

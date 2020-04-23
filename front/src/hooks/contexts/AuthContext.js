@@ -9,7 +9,7 @@ export const AuthProvider = (props) => {
         userId: '',
         file: '',
         noOfPosts: '',
-        bio:''
+        bio: ''
     })
 
     const deleteAndLogoutUser = () => {
@@ -21,7 +21,8 @@ export const AuthProvider = (props) => {
             userId: '',
             file: '',
             noOfPosts: '',
-            bio:''
+            bio: '',
+            token: ''
         })
     }
     const updateProfilePicture = (profilePic) => {
@@ -36,7 +37,7 @@ export const AuthProvider = (props) => {
             ...userData
         })
     }
-    const logIn = (username, email, id, profilePic, noOfPosts,bio) => {
+    const logIn = (username, email, id, profilePic, noOfPosts, bio, token) => {
         setState({
             ...state, isAuthenticated: true,
             username: username,
@@ -44,9 +45,13 @@ export const AuthProvider = (props) => {
             userId: id,
             file: profilePic,
             noOfPosts: noOfPosts,
-            bio:bio
+            bio: bio,
+            token: token
 
+        },function(){
+            localStorage.setItem('token', state.token)      
         })
+        // localStorage.setItem('token', token)
     }
     return (
         <AuthContext.Provider value={{ state, logIn, deleteAndLogoutUser, updateUser, updateProfilePicture }}>

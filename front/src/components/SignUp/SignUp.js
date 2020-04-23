@@ -32,7 +32,7 @@ const SignUp = (props) => {
             // console.log(res);
             if (res.status === 201) {
                 toggleLoading(false);
-                logIn(res.data.username,res.data.email,res.data._id)
+                logIn(res.data.username, res.data.email, res.data._id, '', '', res.data.bio, res.data.token)
                 props.history.push('/')
             }
 

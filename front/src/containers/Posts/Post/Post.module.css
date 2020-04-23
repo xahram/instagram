@@ -9,7 +9,7 @@
 }
 .Post:hover {
   background-color: #cccccc;
-  opacity: 60%;
+  opacity: 0.5;
   cursor: pointer;
 }
 
