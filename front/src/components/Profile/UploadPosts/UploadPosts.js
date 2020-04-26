@@ -1,6 +1,6 @@
 import React from 'react'
 import { Avatar, Typography } from '@material-ui/core'
-import axios from 'axios'
+import axios from '../../../axios'
 import { AuthContext } from '../../../hooks/contexts/AuthContext'
 import classes from './UploadPosts.module.css'
 import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';

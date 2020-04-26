@@ -10,7 +10,7 @@ import { CardMedia } from '@material-ui/core';
 import SearchSuggestions from '../SearchSuggestions/SearchSuggestions'
 import useInputState from '../../hooks/useInputState'
 import useTogglerState from '../../hooks/useTogglerState'
-import axios from 'axios'
+import axios from '../../axios'
 const Navbar = (props) => {
     const { classes } = props;
     const [value, setValue,reset] = useInputState()

@@ -4,6 +4,7 @@ import { AuthContext } from '../../hooks/contexts/AuthContext'
 import Post from './Post/Post'
 import classes from './Posts.module.css'
 import * as profileTypes from '../../hooks/componentTypes'
+import axiosInstance from '../../axios'
 class Posts extends React.Component {
     static contextType = AuthContext
     state = {
@@ -44,7 +45,7 @@ class Posts extends React.Component {
 
             })
         } else {
-            axios.get(`/posts/${value.state.userId}`)
+            axiosInstance.get(`/posts/${value.state.userId}`)
                 .then((res) => {
                     if (res.status === 200) {
                         console.log(res.data)

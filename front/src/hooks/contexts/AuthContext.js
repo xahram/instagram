@@ -48,10 +48,11 @@ export const AuthProvider = (props) => {
             bio: bio,
             token: token
 
-        },function(){
-            localStorage.setItem('token', state.token)      
         })
-        // localStorage.setItem('token', token)
+        // ,function(){
+        //     localStorage.setItem('token', state.token)      
+        // }
+        localStorage.setItem('token', token)
     }
     return (
         <AuthContext.Provider value={{ state, logIn, deleteAndLogoutUser, updateUser, updateProfilePicture }}>

@@ -2,7 +2,7 @@ import React from 'react'
 import UserInfo from '../Profile/ProfileInfo/ProfileInfo'
 import UserProfilePic from '../Profile/ProfilePic/ProfilePic'
 import UserPosts from './UserPosts/UserPosts'
-import axios from 'axios'
+import axios from '../../axios'
 import * as profileTypes from '../../hooks/componentTypes'
 import classes from './UserProfile.module.css'
 export default class UserProfile extends React.Component {

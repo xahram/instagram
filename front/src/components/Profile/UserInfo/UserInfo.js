@@ -7,7 +7,7 @@ const UserInfo = (props) => {
     const updatedArrayState = Object.keys(state)
 
     const userData = updatedArrayState.map((val) => {
-        if (val === '' || val === 'isAuthenticated' || val === "userId" || val === "file" ||val === "noOfPosts") {
+        if (val === '' || val === 'isAuthenticated' || val === "userId" || val === "file" ||val === "noOfPosts"||val === "token") {
             return;
         }
         //Using key instead of val won't work

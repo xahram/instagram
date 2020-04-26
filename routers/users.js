@@ -2,6 +2,7 @@ const express = require('express');
 const UserRouter = new express.Router();
 const User = require('../model/users')
 const multer = require('multer');
+const authMiddleware = require('../middlewares/authMiddleware')
 
 
 const upload = multer()
@@ -15,7 +16,7 @@ UserRouter.post('/users', async (req, res) => {
             bio: user.bio,
             _id: user._id,
             username: user.username,
-            email:  user.email ,
+            email: user.email,
             token: token
         }
         res.status(201).send(updatedUser)
@@ -59,7 +60,7 @@ UserRouter.post('/login', async (req, res) => {
 
 
 })
-UserRouter.delete('/users/:id', async (req, res) => {
+UserRouter.delete('/users/:id',authMiddleware, async (req, res) => {
     const user = await User.findByIdAndDelete(req.params.id)
     try {
         if (!user) {
@@ -71,7 +72,7 @@ UserRouter.delete('/users/:id', async (req, res) => {
     }
 })
 
-UserRouter.patch('/update/:id', async (req, res) => {
+UserRouter.patch('/update/:id', authMiddleware,async (req, res) => {
     // const optionsArray = ['username', 'email', 'password'];
     const reqParams = Object.keys(req.body)
     const propertyValue = reqParams[0];
@@ -92,7 +93,7 @@ UserRouter.patch('/update/:id', async (req, res) => {
     }
 })
 
-UserRouter.post('/uploads/:id', upload.single('avatar'), async (req, res) => {
+UserRouter.post('/uploads/:id', authMiddleware, upload.single('avatar'), async (req, res) => {
     // console.log(req.file)
     const user = await User.findByIdAndUpdate(req.params.id, { avatar: req.file.buffer }, { new: true })
     try {
@@ -106,7 +107,7 @@ UserRouter.post('/uploads/:id', upload.single('avatar'), async (req, res) => {
     }
 })
 
-UserRouter.get('/posts/:id', async (req, res) => {
+UserRouter.get('/posts/:id', authMiddleware, async (req, res) => {
     const user = await User.findOne({ _id: req.params.id })
     try {
         if (!user) {
@@ -124,7 +125,7 @@ UserRouter.get('/posts/:id', async (req, res) => {
     }
 
 })
-UserRouter.get('/searchUser/:username', async (req, res) => {
+UserRouter.get('/searchUser/:username', authMiddleware,async (req, res) => {
     const users = await User.find({ username: { $regex: new RegExp(req.params.username) } }, { email: 0, password: 0, _id: 0, bio: 0 }).lean()
 
     try {
@@ -143,7 +144,7 @@ UserRouter.get('/searchUser/:username', async (req, res) => {
         return res.status(404).send("No User Found")
     }
 })
-UserRouter.get('/otherUserProfile/:username', async (req, res) => {
+UserRouter.get('/otherUserProfile/:username', authMiddleware,async (req, res) => {
 
     const user = await User.findOne({ username: req.params.username })
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { TextField } from '@material-ui/core'
 import useInputState from '../../../hooks/useInputState'
-import axios from 'axios'
+import axios from '../../../axios'
 import { AuthContext } from '../../../hooks/contexts/AuthContext';
 const EditForm = (props) => {
     const { updateUser } = React.useContext(AuthContext)
