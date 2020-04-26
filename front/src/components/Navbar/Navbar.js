@@ -10,10 +10,12 @@ import { CardMedia } from '@material-ui/core';
 import SearchSuggestions from '../SearchSuggestions/SearchSuggestions'
 import useInputState from '../../hooks/useInputState'
 import useTogglerState from '../../hooks/useTogglerState'
+import {AuthContext} from '../../hooks/contexts/AuthContext'
 import axios from '../../axios'
 const Navbar = (props) => {
+    const { state } = React.useContext(AuthContext)
     const { classes } = props;
-    const [value, setValue,reset] = useInputState()
+    const [value, setValue, reset] = useInputState()
     const [loading, setLoading] = useTogglerState(false)
     const [users, setUser] = React.useState([])
     React.useEffect(() => {
@@ -55,7 +57,7 @@ const Navbar = (props) => {
                         <SearchSuggestions reset={reset} loading={loading} users={users} />
                     </div>
                     <IconButton edge="start" className={classes.avatarButton} color="inherit" aria-label="menu">
-                        <Avatar />
+                        <Avatar src={`data:image/jpg;base64,${state.file}`}/>
                     </IconButton>
                 </Toolbar>
             </AppBar>
