@@ -1,7 +1,7 @@
 import React from 'react'
 import { Avatar, Typography } from '@material-ui/core'
 import Person from '@material-ui/icons/Person'
-import axios from '../../../axios'
+import axios from 'axios'
 import { AuthContext } from '../../../hooks/contexts/AuthContext'
 import localClasses from './ProfilePic.module.css'
 import withStyles from '@material-ui/core/styles/withStyles'
@@ -26,7 +26,7 @@ const ProfilePic = (props) => {
         formData.append('avatar', e.target.files[0])
 
         // const file = e.target[0].files[0]
-        axios.post(`/uploads/${state.userId}`, formData)
+        axios.post(`/uploads/${state.userId}`, formData, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
             .then((res) => {
                 // console.log(res)
                 updateProfilePicture(res.data)

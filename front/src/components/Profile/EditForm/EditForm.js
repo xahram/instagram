@@ -1,7 +1,7 @@
 import React from 'react'
 import { TextField } from '@material-ui/core'
 import useInputState from '../../../hooks/useInputState'
-import axios from '../../../axios'
+import axios from 'axios'
 import { AuthContext } from '../../../hooks/contexts/AuthContext';
 const EditForm = (props) => {
     const { updateUser } = React.useContext(AuthContext)
@@ -15,7 +15,7 @@ const EditForm = (props) => {
 
         const updatedField = { [fieldNameForUD]: e.target[0].value }
         console.log(updatedField)
-        axios.patch(`/update/${userId}`, updatedField)
+        axios.patch(`/update/${userId}`, updatedField, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
             .then((res) => {
                 if (res.status === 200) {
                     const modifiedUser = { [fieldNameForUD]: res.data[fieldNameForUD] }

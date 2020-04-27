@@ -13,6 +13,7 @@ export const AuthProvider = (props) => {
     })
 
     const deleteAndLogoutUser = () => {
+        localStorage.removeItem('token')
         setState({
             ...state,
             isAuthenticated: false,
@@ -38,6 +39,11 @@ export const AuthProvider = (props) => {
         })
     }
     const logIn = (username, email, id, profilePic, noOfPosts, bio, token) => {
+        localStorage.setItem('token', token)
+        //must be aboce the setstate as setstate will rerender posts componenet
+        //so localstorage hence wil be set after render causing posts to not appear
+        //on first time but after that navigating off and on page will render posts 
+        // but not on login
         setState({
             ...state, isAuthenticated: true,
             username: username,
@@ -52,7 +58,7 @@ export const AuthProvider = (props) => {
         // ,function(){
         //     localStorage.setItem('token', state.token)      
         // }
-        localStorage.setItem('token', token)
+        
     }
     return (
         <AuthContext.Provider value={{ state, logIn, deleteAndLogoutUser, updateUser, updateProfilePicture }}>

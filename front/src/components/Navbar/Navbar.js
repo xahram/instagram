@@ -10,8 +10,8 @@ import { CardMedia } from '@material-ui/core';
 import SearchSuggestions from '../SearchSuggestions/SearchSuggestions'
 import useInputState from '../../hooks/useInputState'
 import useTogglerState from '../../hooks/useTogglerState'
-import {AuthContext} from '../../hooks/contexts/AuthContext'
-import axios from '../../axios'
+import { AuthContext } from '../../hooks/contexts/AuthContext'
+import axios from 'axios'
 const Navbar = (props) => {
     const { state } = React.useContext(AuthContext)
     const { classes } = props;
@@ -23,7 +23,7 @@ const Navbar = (props) => {
             setLoading(true)
             //here user = {username:response.data.username,avatar:response.data.avatar}
             //setUser(user)
-            axios.get(`/searchUser/${value}`)
+            axios.get(`/searchUser/${value}`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
                 .then((res) => {
 
                     setUser(res.data)
@@ -57,7 +57,7 @@ const Navbar = (props) => {
                         <SearchSuggestions reset={reset} loading={loading} users={users} />
                     </div>
                     <IconButton edge="start" className={classes.avatarButton} color="inherit" aria-label="menu">
-                        <Avatar src={`data:image/jpg;base64,${state.file}`}/>
+                        <Avatar src={`data:image/jpg;base64,${state.file}`} />
                     </IconButton>
                 </Toolbar>
             </AppBar>

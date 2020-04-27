@@ -2,7 +2,7 @@ import React from 'react'
 import UserInfo from '../Profile/ProfileInfo/ProfileInfo'
 import UserProfilePic from '../Profile/ProfilePic/ProfilePic'
 import UserPosts from './UserPosts/UserPosts'
-import axios from '../../axios'
+import axios from 'axios'
 import * as profileTypes from '../../hooks/componentTypes'
 import classes from './UserProfile.module.css'
 export default class UserProfile extends React.Component {
@@ -21,7 +21,7 @@ export default class UserProfile extends React.Component {
                 // console.log(params)
                 username = params[1]
             }
-            axios.get(`/otherUserProfile/${username}`)
+            axios.get(`/otherUserProfile/${username}`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
                 .then((res) => {
 
                     this.setState({
@@ -47,7 +47,7 @@ export default class UserProfile extends React.Component {
             // console.log(params)
             username = params[1]
         }
-        axios.get(`/otherUserProfile/${username}`)
+        axios.get(`/otherUserProfile/${username}`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
             .then((res) => {
 
                 this.setState({

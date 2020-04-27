@@ -1,6 +1,6 @@
 import React from 'react'
 import { Avatar, Typography } from '@material-ui/core'
-import axios from '../../../axios'
+import axios from 'axios'
 import { AuthContext } from '../../../hooks/contexts/AuthContext'
 import classes from './UploadPosts.module.css'
 import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
@@ -17,7 +17,7 @@ const UploadPosts = (props) => {
         const formData = new FormData()
         formData.append('post', e.target.files[0])
 
-        axios.post(`/post/upload/${state.userId}`, formData)
+        axios.post(`/post/upload/${state.userId}`, formData, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
             .then((res) => {
                 console.log(res.data)
                 // updateProfilePicture(res.data)

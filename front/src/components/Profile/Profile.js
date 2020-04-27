@@ -5,7 +5,7 @@ import styles from './ProfileStyles'
 import withStyles from '@material-ui/core/styles/withStyles'
 import UserInfo from './UserInfo/UserInfo'
 import { Button } from 'react-bootstrap'
-import axios from '../../axios'
+import axios from 'axios'
 import { toast, ToastContainer } from 'react-toastify'
 import ProfilePic from './ProfilePic/ProfilePic'
 import UploadPosts from './UploadPosts/UploadPosts'
@@ -22,7 +22,7 @@ const Profile = (props) => {
 
     const onDeleteHandler = (id) => {
         console.log(id)
-        axios.delete(`/users/${id}`)
+        axios.delete(`/users/${id}`,{ headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
             .then((res) => {
                 if (res.status === 200) {
                     console.log(res.data)

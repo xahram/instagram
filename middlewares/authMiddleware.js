@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 
 const authMiddleware = async (req, res, next) => {
     try {
-        const token = req.header('Authorization')
+        const token = req.header('Authorization').replace("Bearer ","")
         console.log(token)
         const decoded = jwt.verify(token, 'instagramclone')
         const user = await User.findOne({ _id: decoded._id })

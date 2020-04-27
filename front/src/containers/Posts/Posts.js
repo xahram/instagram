@@ -1,10 +1,9 @@
 import React from 'react';
-import axios from 'axios'
 import { AuthContext } from '../../hooks/contexts/AuthContext'
 import Post from './Post/Post'
 import classes from './Posts.module.css'
 import * as profileTypes from '../../hooks/componentTypes'
-import axiosInstance from '../../axios'
+import axios from 'axios'
 class Posts extends React.Component {
     static contextType = AuthContext
     state = {
@@ -45,7 +44,8 @@ class Posts extends React.Component {
 
             })
         } else {
-            axiosInstance.get(`/posts/${value.state.userId}`)
+            
+            axios.get(`/posts/${value.state.userId}`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
                 .then((res) => {
                     if (res.status === 200) {
                         console.log(res.data)
