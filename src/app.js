@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const io = require('socket.io')
+
 require('../db/mongoose')
 
 const path = require('path')
@@ -18,11 +20,17 @@ app.use(postsRouter)
 
 
 
+const server = require('http').Server(app)
+const socket = io(server)
 
+socket.on('connection',(socket)=>{
+    console.log("Socket ", socket)
+})
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../front/build/index.html'));
 });
 
-app.listen(port, () => { console.log(`Listening on port ${port}`)
+app.listen(port, () => {
+    console.log(`Listening on port ${port}`)
 })
