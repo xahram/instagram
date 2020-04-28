@@ -14,6 +14,7 @@ import ProfileInfo from './ProfileInfo/ProfileInfo'
 import DeleteUserModal from '../UI/Modal/Modal'
 import useToggleHook from '../../hooks/useTogglerState'
 import EditUser from './EditUser/EditUser'
+import Chat from '../Chat/Chat'
 import { Route } from 'react-router-dom'
 const Profile = (props) => {
     const { state, deleteAndLogoutUser } = React.useContext(AuthContext);
@@ -65,6 +66,7 @@ const Profile = (props) => {
             Are you sure to delete your profile
         </DeleteUserModal>
         <UploadPosts />
+        <Chat />
         <Posts />
     </React.Fragment>
     )

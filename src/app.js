@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const io = require('socket.io')
+const socketio = require('socket.io')
 
 require('../db/mongoose')
 
@@ -20,17 +20,20 @@ app.use(postsRouter)
 
 
 
-const server = require('http').Server(app)
-const socket = io(server)
+const server = require('http').createServer(app)
+const io = socketio(server)
 
-socket.on('connection',(socket)=>{
-    console.log("Socket ", socket)
+io.on('connection', (socket) => {
+    console.log("New client connected")
+    socket.on('disconnect',()=>{
+        console.log("User disconnected")
+    })
 })
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../front/build/index.html'));
 });
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Listening on port ${port}`)
 })
