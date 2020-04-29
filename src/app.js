@@ -22,10 +22,17 @@ app.use(postsRouter)
 
 const server = require('http').createServer(app)
 const io = socketio(server)
-
+let count = 0
 io.on('connection', (socket) => {
     console.log("New client connected")
-    socket.on('disconnect',()=>{
+
+    socket.emit('increment', count)
+    socket.on('increment', () => {
+        count++
+        console.log(count)
+        socket.emit('increment', count)
+    })
+    socket.on('disconnect', () => {
         console.log("User disconnected")
     })
 })

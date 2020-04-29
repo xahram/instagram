@@ -1,18 +1,25 @@
 import React from 'react'
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "http://127.0.0.1:8000";
-const Chat = (props) => {
-    const [response, setResponse] = React.useState("");
+const socket = socketIOClient(ENDPOINT);
+export default class Chat extends React.Component {
+    state = {
+        response: null
+    }
+    componentWillUnmount() {
+        socket.emit('disconnect')
+    }
+    componentDidMount() {
 
-    React.useEffect(() => {
-        const socket = socketIOClient(ENDPOINT);
-        socket.on("connection", data => {
-            setResponse(data);
-        });
-    }, []);
-    return (<p>
-            Hi How are you
-    </p>)
+        socket.on("increment", data => {
+            this.setState({ response: data });
+        })
+    } render() {
+        return (<p onClick={() => {
+            socket.emit('increment')
+            socket.on("increment", data => {
+                this.setState({ response: data });
+            })
+        }}> Hi how are you { this.state.response}</p >)
+    }
 }
-
-export default Chat
