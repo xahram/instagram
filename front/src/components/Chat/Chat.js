@@ -6,11 +6,10 @@ export default class Chat extends React.Component {
     state = {
         response: null
     }
-    componentWillUnmount() {
-        socket.emit('disconnect')
-    }
+    // componentWillUnmount() {
+    //     socket.emit('disconnect')
+    // }
     componentDidMount() {
-
         socket.on("increment", data => {
             this.setState({ response: data });
         })
