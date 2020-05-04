@@ -1,5 +1,5 @@
 import React from 'react'
-import InstagramImageLogo from '../../assets/instagram.png'
+import InstagramImageLogo from '../../assets/instagram.jpeg'
 // import classes from './Navbar.module.css'
 import { Avatar, AppBar, Toolbar, IconButton } from '@material-ui/core'
 import { Search } from '@material-ui/icons'
