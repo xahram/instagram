@@ -1,10 +1,14 @@
 import React from 'react';
 import { AuthContext } from '../../hooks/contexts/AuthContext'
 import Post from './Post/Post'
-import classes from './Posts.module.css'
+import classesStyles from './Posts.module.css'
 import * as profileTypes from '../../hooks/componentTypes'
 import Pagination from '@material-ui/lab/Pagination';
 import axios from 'axios'
+import { withStyles } from '@material-ui/core/styles';
+import styles from './PostsStyles'
+
+
 class Posts extends React.Component {
     static contextType = AuthContext
     state = {
@@ -66,11 +70,23 @@ class Posts extends React.Component {
         }
 
     }
+    
     handleChange = (e, currentpageNumber) => {
         this.setState({ currentPage: currentpageNumber })
     }
     render() {
+        // const useStyles = makeStyles((theme) => ({
+        //     root: {
+        //         margin:'auto',
+        //         width:'50%'
+        //         // '& > *': {
+        //         //     marginTop: theme.spacing(2),
+        //         // },
+        //     },
+        // }));
+        // const classesStylesMaterialUi = useStyles();
         const { currentPage, todosPerPage } = this.state;
+        const {classes} = this.props
         const indexOfLastTodo = currentPage * todosPerPage;
         const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
         const currentPosts = this.state.posts.slice(indexOfFirstTodo, indexOfLastTodo);
@@ -86,17 +102,18 @@ class Posts extends React.Component {
             <>
                 {this.state.posts.length === 0 ? checkPost : null}
                 {this.state.errorMessage}
-                <div className={classes.Posts}>
+                <div className={classesStyles.Posts}>
                     {fetchedPosts}
                 </div>
-                <Pagination
-                    count={Math.ceil(this.state.posts.length / this.state.todosPerPage)}
-                    page={this.state.currentPage}
-                    onChange={this.handleChange}
-                    color="secondary" />
+                    <Pagination className={classes.root}
+                        count={Math.ceil(this.state.posts.length / this.state.todosPerPage)}
+                        page={this.state.currentPage}
+                        onChange={this.handleChange}
+                        color="primary" size="large" />
+
             </>
         );
     }
 }
 
-export default Posts
+export default withStyles(styles)(Posts)

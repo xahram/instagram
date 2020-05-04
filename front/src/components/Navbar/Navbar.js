@@ -1,5 +1,5 @@
 import React from 'react'
-import InstagramImageLogo from '../../assets/index.png'
+import InstagramImageLogo from '../../assets/instagram.png'
 // import classes from './Navbar.module.css'
 import { Avatar, AppBar, Toolbar, IconButton } from '@material-ui/core'
 import { Search } from '@material-ui/icons'
@@ -47,9 +47,9 @@ const Navbar = (props) => {
                         <img className={classes.cardMediaImage} src={InstagramImageLogo} alt='instagram' />
                     </CardMedia>
                     <div className={classes.search}>
-                        {/* <div className={classes.searchIcon}>
+                        <div className={classes.searchIcon}>
                             <Search />
-                        </div> */}
+                        </div>
                         <InputBase value={value} onChange={setValue} placeholder='Search...' classes={{
                             root: classes.inputRoot,
                             input: classes.inputInput

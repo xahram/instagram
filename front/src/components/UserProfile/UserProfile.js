@@ -5,6 +5,7 @@ import UserPosts from './UserPosts/UserPosts'
 import axios from 'axios'
 import * as profileTypes from '../../hooks/componentTypes'
 import classes from './UserProfile.module.css'
+import TopBarProgress from "react-top-loading-bar";
 export default class UserProfile extends React.Component {
     state = {
         username: '',
@@ -66,7 +67,11 @@ export default class UserProfile extends React.Component {
 
     render() {
         // console.log(this.state.posts)
-        return (<><div className={classes.UserProfile}>
+        return (<><TopBarProgress
+            progress={100}
+            height={3}
+            color="red" />
+        <div className={classes.UserProfile}>
             <UserProfilePic
                 avatar={this.state.userProfilePic}
                 type={profileTypes.USER_PROFILE} />
