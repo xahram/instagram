@@ -5,6 +5,7 @@ import UserPosts from './UserPosts/UserPosts'
 import axios from 'axios'
 import * as profileTypes from '../../hooks/componentTypes'
 import classes from './UserProfile.module.css'
+import TopBarProgress from "react-top-loading-bar";
 export default class UserProfile extends React.Component {
     state = {
         username: '',
