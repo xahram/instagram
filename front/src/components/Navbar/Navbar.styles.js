@@ -3,7 +3,8 @@ const styles = (theme) => {
         appBar: {
             width: "100%",
             height: '64px',
-            marginTop:'10px'
+            marginTop:'10px',
+            zIndex :'0'
 
         },
         toolbar: {

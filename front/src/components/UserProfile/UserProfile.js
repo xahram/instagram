@@ -12,7 +12,8 @@ export default class UserProfile extends React.Component {
         userProfilePic: '',
         noOfPosts: '',
         bio: '',
-        posts: []
+        posts: [],
+        loadingBar: true
     }
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.location.search !== this.props.location.search) {
@@ -57,6 +58,7 @@ export default class UserProfile extends React.Component {
                     bio: res.data.bio,
                     posts: res.data.posts,
                     noOfPosts: res.data.noOfPosts,
+                    loadingBar: false
 
                 })
             })
@@ -67,21 +69,22 @@ export default class UserProfile extends React.Component {
 
     render() {
         // console.log(this.state.posts)
-        return (<><TopBarProgress
-            progress={100}
-            height={3}
-            color="red" />
-        <div className={classes.UserProfile}>
-            <UserProfilePic
-                avatar={this.state.userProfilePic}
-                type={profileTypes.USER_PROFILE} />
-            <UserInfo
-                username={this.state.username}
-                bio={this.state.bio}
-                noOfPosts={this.state.noOfPosts}
-                type={profileTypes.USER_PROFILE} />
+        return (<>
+            {this.state.loadingBar ? <TopBarProgress
+                progress={100}
+                height={3}
+                color="red" /> : null}
+            <div className={classes.UserProfile}>
+                <UserProfilePic
+                    avatar={this.state.userProfilePic}
+                    type={profileTypes.USER_PROFILE} />
+                <UserInfo
+                    username={this.state.username}
+                    bio={this.state.bio}
+                    noOfPosts={this.state.noOfPosts}
+                    type={profileTypes.USER_PROFILE} />
 
-        </div>
+            </div>
             <UserPosts
 
                 posts={this.state.posts}
