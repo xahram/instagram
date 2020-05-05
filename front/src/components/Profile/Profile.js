@@ -66,7 +66,7 @@ const Profile = (props) => {
             Are you sure to delete your profile
         </DeleteUserModal>
         <UploadPosts />
-        <Chat />
+        {/* <Chat /> */}
         <Posts />
     </React.Fragment>
     )

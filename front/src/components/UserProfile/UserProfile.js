@@ -73,7 +73,10 @@ export default class UserProfile extends React.Component {
             {this.state.loadingBar ? <TopBarProgress
                 progress={100}
                 height={3}
-                color="red" /> : null}
+                color="red" /> : <TopBarProgress
+                    progress={0}
+                    height={3}
+                    color="red" />}
             <div className={classes.UserProfile}>
                 <UserProfilePic
                     avatar={this.state.userProfilePic}
