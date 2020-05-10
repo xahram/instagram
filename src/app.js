@@ -22,6 +22,11 @@ app.use(postsRouter)
 
 const server = require('http').createServer(app)
 const io = socketio(server)
+
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../front/build/index.html'));
+});
+
 let count = 0
 io.on('connection', (socket) => {
     console.log("New client connected")
@@ -37,9 +42,7 @@ io.on('connection', (socket) => {
     })
 })
 
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../front/build/index.html'));
-});
+
 
 server.listen(port, () => {
     console.log(`Listening on port ${port}`)

@@ -71,10 +71,10 @@ export default class UserProfile extends React.Component {
         // console.log(this.state.posts)
         return (<>
             {this.state.loadingBar ? <TopBarProgress
-                progress={100}
+                progress={0}
                 height={3}
                 color="red" /> : <TopBarProgress
-                    progress={0}
+                    progress={100}
                     height={3}
                     color="red" />}
             <div className={classes.UserProfile}>
