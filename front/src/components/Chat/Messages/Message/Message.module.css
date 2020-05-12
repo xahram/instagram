@@ -1,0 +1,42 @@
+.receiver {
+  position: relative;
+  background: #d0d0d0;
+  border-radius: 0.4em;
+  width: 60%;
+  /* color: whitesmoke; */
+  margin-left: auto;
+}
+.receiver:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 0.688em solid transparent;
+  border-left-color: #c0c0c0;
+  border-right: 0;
+  margin-top: -0.687em;
+  margin-right: -0.687em;
+}
+.sender {
+  position: relative;
+  background-color: #00aabb;
+  color: whitesmoke;
+  border-radius: 0.4em;
+  width: 60%;
+  margin-right: auto;
+}
+.sender:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 0.688em solid transparent;
+  border-right-color: #00aabb;
+  border-left: 0;
+  margin-top: -0.687em;
+  margin-left: -0.687em;
+}

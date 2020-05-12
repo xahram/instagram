@@ -38,6 +38,15 @@ app.get('/*', (req, res) => {
 });
 
 let count = 0
+// Connect when chat page is rendered which is 
+// in componentdidmount the below io.on will be run
+// Next you fetch the previously stored chats from db
+// emit it where count is emitted and send it to client
+//Next client sends a new message you get that in
+//on event and you save tht to db where count++ 
+//send it to the other user or both ones
+
+// First make Chat page with all the necessary front end
 io.on('connection', (socket) => {
     console.log("New client connected")
 

@@ -15,7 +15,7 @@ import DeleteUserModal from '../UI/Modal/Modal'
 import useToggleHook from '../../hooks/useTogglerState'
 import EditUser from './EditUser/EditUser'
 import Chat from '../Chat/Chat'
-import { Route } from 'react-router-dom'
+import { Route, NavLink } from 'react-router-dom'
 const Profile = (props) => {
     const { state, deleteAndLogoutUser } = React.useContext(AuthContext);
     const { classes } = props;
@@ -23,7 +23,7 @@ const Profile = (props) => {
 
     const onDeleteHandler = (id) => {
         console.log(id)
-        axios.delete(`/users/${id}`,{ headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
+        axios.delete(`/users/${id}`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } })
             .then((res) => {
                 if (res.status === 200) {
                     console.log(res.data)
@@ -66,7 +66,7 @@ const Profile = (props) => {
             Are you sure to delete your profile
         </DeleteUserModal>
         <UploadPosts />
-        <Chat />
+        <NavLink to='/chat' >Chat</NavLink>
         <Posts />
     </React.Fragment>
     )
