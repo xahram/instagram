@@ -2,14 +2,14 @@ import React from 'react'
 import io from "socket.io-client";
 const ENDPOINT = "http://127.0.0.1:8000";
 const socket = io(':8000');
-function tempFunct(val) {
-    let counter = 0
-    socket.on("increment", data => {
-        counter = data
-    })
-    return counter
 
-}
+let counter = 0
+socket.on("increment", data => {
+    console.log(data)
+    counter = data
+})
+
+
 
 export default class Chat extends React.Component {
     state = {
@@ -19,8 +19,8 @@ export default class Chat extends React.Component {
     //     socket.emit('disconnect')
     // }
     componentDidUpdate(prevProp, prevState) {
-        if (prevState.response !== this.state.response) {
-            this.setState({ response: tempFunct() })
+        if (counter !== prevState.response) {
+            this.setState({ response: counter })
         }
     }
     componentDidMount() {
@@ -31,13 +31,13 @@ export default class Chat extends React.Component {
     }
     onClickHandler = () => {
         socket.emit('increment')
-        this.setState({ response: tempFunct() })
+        this.setState({ response:counter })
         // socket.on("increment", data => {
         //     counter = data
         // })
 
     }
     render() {
-        return (<p onClick={this.onClickHandler}> Hi how are you {counter}</p >)
+        return (<p onClick={this.onClickHandler}> Hi how are you {this.state.response}</p >)
     }
 }

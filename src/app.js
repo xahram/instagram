@@ -21,7 +21,17 @@ app.use(postsRouter)
 
 
 const server = require('http').createServer(app)
-const io = socketio(server)
+const io = socketio(server, {
+    handlePreflightRequest: (req, res) => {
+        const headers = {
+            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            "Access-Control-Allow-Origin": req.headers.origin, //or the specific origin you want to give access to,
+            "Access-Control-Allow-Credentials": true
+        };
+        res.writeHead(200, headers);
+        res.end();
+    }
+})
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../front/build/index.html'));
@@ -35,7 +45,7 @@ io.on('connection', (socket) => {
     socket.on('increment', () => {
         count++
         console.log(count)
-        socket.emit('increment', count)
+        io.emit('increment', count)
     })
     socket.on('disconnect', () => {
         console.log("User disconnected")

@@ -1,7 +1,7 @@
 const styles = (theme)=>{
     return {
         root :{
-            width: '50%',
+            width: '70%',
             margin:'auto'
         }
     }
