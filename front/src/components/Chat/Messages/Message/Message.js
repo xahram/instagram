@@ -4,6 +4,6 @@ const message = (props) => {
     return (<div className={classes[props.type]}>
         <p>{props.text}</p>
     </div>)
-}
+} 
 
 export default message

@@ -2,9 +2,11 @@
   position: relative;
   background: #d0d0d0;
   border-radius: 0.4em;
-  width: 60%;
-  /* color: whitesmoke; */
+  max-width: 50%;
+  padding-top: 1%;
+  padding-bottom: 1%;
   margin-left: auto;
+  
 }
 .receiver:after {
   content: "";
@@ -16,16 +18,21 @@
   border: 0.688em solid transparent;
   border-left-color: #c0c0c0;
   border-right: 0;
+  /* margin-top: -0.687em; */
   margin-top: -0.687em;
   margin-right: -0.687em;
+  /* margin-bottom: 1rem; */
 }
 .sender {
   position: relative;
   background-color: #00aabb;
   color: whitesmoke;
   border-radius: 0.4em;
-  width: 60%;
+  max-width: 50%;
+  padding-top: 1%;
+  padding-bottom: 1%;
   margin-right: auto;
+  
 }
 .sender:after {
   content: "";
@@ -39,4 +46,10 @@
   border-left: 0;
   margin-top: -0.687em;
   margin-left: -0.687em;
+}
+.sender p {
+  margin-bottom: 0;
+}
+.receiver p {
+  margin-bottom: 0;
 }
