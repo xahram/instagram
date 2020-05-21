@@ -10,9 +10,12 @@ const conversationSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
-    timestamps: true
+    message: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Chat'
+    }]
 })
 
-const Conversations = mongoose.model('conversations', conversationSchema)
+const Conversation = mongoose.model('Conversation', conversationSchema)
 
-module.exports = Conversations
+module.exports = Conversation

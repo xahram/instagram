@@ -7,9 +7,10 @@ const chatSchema = new Schema({
     },
     conversation: {
         type: mongoose.Schema.Types.ObjectId,
-        ref:'conversations'
-    }
+        ref: 'Conversation'
+    },
+    timestamps: true
 })
 
-const Chats = mongoose.model('chats', chatSchema)
-module.exports = Chats
+const Chat = mongoose.model('Chat', chatSchema)
+module.exports = Chat

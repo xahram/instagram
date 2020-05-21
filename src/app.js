@@ -7,6 +7,9 @@ require('../db/mongoose')
 const path = require('path')
 const postsRouter = require('../routers/posts')
 const UserRouter = require('../routers/users')
+const Chat = require('../model/chats')
+const Conversation = require('../model/conversations')
+
 
 
 
@@ -33,7 +36,7 @@ const io = socketio(server, {
     }
 })
 
-app.get('/*', (req, res) => {
+server.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../front/build/index.html'));
 });
 
@@ -47,9 +50,33 @@ let count = 0
 //send it to the other user or both ones
 
 // First make Chat page with all the necessary front end
-io.on('connection', (socket) => {
+io.on('connection', async (socket) => {
     console.log("New client connected")
+    //After Auth
 
+    socket.on('new_message', (data) => {
+        const chat = new Chat({
+            text: data.messageText,
+            _id: new mongoose.Types.ObjectId()
+        })
+        const conversation = new Conversation({
+            sender: data.senderId,
+            receiver: data.receiverId,
+            message: [].push(chat._id)
+        })
+        try {
+            chat.save(function (err) {
+                if (err) {
+                    throw new Error(err);
+                }
+                else {
+                    await conversation.save()
+                }
+            })
+        } catch (error) {
+            socket.emit('error', 'unable to send message')
+        }
+    })
     socket.emit('increment', count)
     socket.on('increment', () => {
         count++
